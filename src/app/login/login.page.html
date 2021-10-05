@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>INICIAR SESIÓN</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="login" style="padding-top: 10%;">
+    <ion-card>
+      <div class="logo" style="height: auto; align-items: center; padding-top: 6%; padding-bottom: 6%; padding-left: 5%; padding-right: 5%;">
+        <img src="assets/img/logo.png">
+      </div>
+      <ion-card-content>
+        <form [formGroup] = "formularioLogin"> 
+          <ion-item>
+            <ion-label iconposition="floating">Usuario</ion-label>
+            <ion-input formControlName="usuario"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input formControlName="contraseña" type="password"></ion-input>
+          </ion-item>
+        </form>
+        <br>
+        <ion-button expand="block" (click)="ingresar()">Iniciar sesión</ion-button>
+        <p style="text-align: center; margin-top: 3%; margin-bottom: 3%;"><a routerLink="/restablecerpw">¿Has olvidado la contraseña?</a></p>
+        <p style="text-align: center;">¿No tienes cuenta?. <a routerLink="/registrar">Regístrate</a></p>
+      </ion-card-content>  
+    </ion-card> 
+    
+  </div>  
+</ion-content>
+
