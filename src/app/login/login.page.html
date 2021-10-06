@@ -1,24 +1,25 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>INICIAR SESIÓN</ion-title>
+    <ion-title>LOGIN</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <div class="login" style="padding-top: 10%;">
+  <div class="login">
     <ion-card>
-      <div class="logo" style="height: auto; align-items: center; padding-top: 6%; padding-bottom: 6%; padding-left: 5%; padding-right: 5%;">
-        <img src="assets/img/logo.png">
+      <div class="logo" style="height: auto; align-items: center; padding-top: 4%; padding-bottom: 4%; padding-left: 9%; padding-right: 5%;">
+        <img src="assets/img/logo1.png">
       </div>
       <ion-card-content>
         <form [formGroup] = "formularioLogin"> 
           <ion-item>
-            <ion-label iconposition="floating">Usuario</ion-label>
+            <ion-label position="floating">Usuario</ion-label>
             <ion-input formControlName="usuario"></ion-input>
           </ion-item>
+          <ion-label color="danger" *ngIf="formularioLogin.controls.usuario.errors?.required && (formularioLogin.touched || formularioLogin.dirty)">*Debe ingresar el usuario</ion-label>
           <ion-item>
             <ion-label position="floating">Contraseña</ion-label>
-            <ion-input formControlName="contraseña" type="password"></ion-input>
+            <ion-input formControlName="password" type="password"></ion-input>
           </ion-item>
         </form>
         <br>

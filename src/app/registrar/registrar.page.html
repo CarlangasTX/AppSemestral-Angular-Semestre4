@@ -1,9 +1,53 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>registrar</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="danger"></ion-back-button>
+    </ion-buttons>
+    <ion-title>REGISTRAR</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div style="padding-top: 8%;">
+    <ion-card>
+      <div class="logo" style="height: auto; align-items: center; padding-top: 4%; padding-bottom: 4%; padding-left: 9%; padding-right: 5%;">
+        <img src="assets/img/logo1.png">
+      </div>
+      <ion-card-content>
+        <form [formGroup] = "formularioRegistrar"> 
+          <ion-item>
+            <ion-label position="floating">Nombre</ion-label>
+            <ion-input formControlName="nombre"></ion-input>
+          </ion-item>
+          <ion-label color="danger" *ngIf="formularioRegistrar.controls.nombre.errors?.required && (formularioRegistrar.touched || formularioRegistrar.dirty)">*El nombre es obligatorio</ion-label>
+          <ion-label color="danger" *ngIf="formularioRegistrar.controls.nombre.errors?.minlength && (formularioRegistrar.touched || formularioRegistrar.dirty)">*El nombre debe tener al menos 3 letras</ion-label>
+          <ion-label color="danger" *ngIf="formularioRegistrar.controls.nombre.errors?.maxlength && (formularioRegistrar.touched || formularioRegistrar.dirty)">*El nombre no puede tener más de 30 letras</ion-label>
+          <ion-item>
+            <ion-label position="floating">Apellido</ion-label>
+            <ion-input formControlName="apellido"></ion-input>
+          </ion-item>
+          <ion-label color="danger" *ngIf="formularioRegistrar.controls.apellido.errors?.required && (formularioRegistrar.touched || formularioRegistrar.dirty)">*El apellido es obligatorio</ion-label>
+          <ion-label color="danger" *ngIf="formularioRegistrar.controls.apellido.errors?.minlength && (formularioRegistrar.touched || formularioRegistrar.dirty)">*El apellido debe tener al menos 3 letras</ion-label>
+          <ion-label color="danger" *ngIf="formularioRegistrar.controls.apellido.errors?.maxlength && (formularioRegistrar.touched || formularioRegistrar.dirty)">*El apellido no puede tener más de 30 letras</ion-label>
+          <ion-item>
+            <ion-label position="floating">Correo</ion-label>
+            <ion-input formControlName="correo" type="email"></ion-input>
+          </ion-item>
+          <ion-label color="danger" *ngIf="formularioRegistrar.controls.correo.errors?.required && (formularioRegistrar.touched || formularioRegistrar.dirty)">*El correo es obligatorio</ion-label>
+          <ion-label color="danger" *ngIf="formularioRegistrar.controls.correo.errors?.email && (formularioRegistrar.touched || formularioRegistrar.dirty)">*Por favor, revise el formato del correo</ion-label>
+          <ion-item>
+            <ion-label position="floating">Usuario</ion-label>
+            <ion-input formControlName="usuario"></ion-input>
+          </ion-item>
+          <ion-label color="danger" *ngIf="formularioRegistrar.controls.usuario.errors?.required && (formularioRegistrar.touched || formularioRegistrar.dirty)">*El usuario es obligatorio</ion-label>
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input formControlName="contraseña" type="password"></ion-input>
+          </ion-item>
+        </form>
+        <br>
+        <ion-button expand="block" (click)="registrar()">Registrar</ion-button>
+      </ion-card-content>  
+    </ion-card>
+  </div>
 </ion-content>
