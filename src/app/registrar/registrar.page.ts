@@ -11,19 +11,17 @@ import { AlertController } from '@ionic/angular';
 })
 export class RegistrarPage implements OnInit {
 
-  lista_usuarios = new Array();
-  usuario:any;
+
   constructor(public alertController: AlertController, private router:Router) {}
    formularioRegistrar = new FormGroup({
-    'nombre': new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
-    'apellido': new FormControl("", [Validators.required, Validators.minLength(3), Validators.maxLength(30)]),
-    'correo' : new FormControl("",[Validators.required, Validators.email]),
     'usuario': new FormControl("", Validators.required),
-    'contraseña': new FormControl("", Validators.required),
+    'password': new FormControl("", Validators.required),
+    'correo' : new FormControl("",[Validators.required, Validators.email]),
   })
   
     ngOnInit() {
    }
+  lista_usuarios = new Array();
 
   async registrar(){
     var registro = this.formularioRegistrar.value;
@@ -39,15 +37,13 @@ export class RegistrarPage implements OnInit {
       return;
     }
 
-    this.usuario = {
-      nombre: registro.nombre,
-      apellido: registro.apellido,
-      correo: registro.correo,
+    var usuario = {
       usuario: registro.usuario,
-      contraseña: registro.contraseña,
+      password: registro.password,
     }
 
-    this.lista_usuarios.push(this.usuario);
+    this.lista_usuarios.push(usuario);
+
     localStorage.setItem('usuario',JSON.stringify(this.lista_usuarios));
      
     if(this.formularioRegistrar.valid){
@@ -58,11 +54,9 @@ export class RegistrarPage implements OnInit {
           {
             text: 'Aceptar',
             handler: () => {
-              this.formularioRegistrar.controls.nombre.setValue('');
-              this.formularioRegistrar.controls.apellido.setValue('');
               this.formularioRegistrar.controls.correo.setValue('');
               this.formularioRegistrar.controls.usuario.setValue('');
-              this.formularioRegistrar.controls.contraseña.setValue('');
+              this.formularioRegistrar.controls.password.setValue('');
             }}
           ]
       });

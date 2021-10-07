@@ -19,6 +19,10 @@ const routes: Routes = [
     path: 'restablecerpw',
     loadChildren: () => import('./restablecerpw/restablecerpw.module').then( m => m.RestablecerpwPageModule)
   },
+  {
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
 ];
 
 @NgModule({
