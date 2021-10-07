@@ -1,5 +1,7 @@
 {
   "name": "AppSemestral",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

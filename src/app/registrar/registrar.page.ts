@@ -14,7 +14,7 @@ export class RegistrarPage implements OnInit {
 
   constructor(public alertController: AlertController, private router:Router) {}
    formularioRegistrar = new FormGroup({
-    'usuario': new FormControl("", Validators.required),
+    'usuario': new FormControl("", [Validators.required, Validators.minLength(5)]),
     'password': new FormControl("", Validators.required),
     'correo' : new FormControl("",[Validators.required, Validators.email]),
   })
@@ -38,6 +38,7 @@ export class RegistrarPage implements OnInit {
     }
 
     var usuario = {
+      correo: registro.correo,
       usuario: registro.usuario,
       password: registro.password,
     }

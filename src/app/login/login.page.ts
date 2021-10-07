@@ -47,10 +47,11 @@ export class LoginPage implements OnInit {
         usuario: users.usuario,
         password: users.password
       };
-      if(ingreso.usuario == user.usuario && ingreso.password == user.usuario){
+      if(ingreso.usuario == user.usuario && ingreso.password == user.password){
         numerito += 1; 
         localStorage.setItem('ingresado', 'true');
         this.router.navigate(['/home']);
+        localStorage.setItem('logeado', user.usuario);
       }
       
       lista_temporal.push(user);

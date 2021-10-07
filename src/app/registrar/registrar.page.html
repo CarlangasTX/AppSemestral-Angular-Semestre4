@@ -8,9 +8,11 @@
 </ion-header>
 
 <ion-content>
+  <ion-row>
+  <ion-col size="12" size-md="4" offset-md="4" size-sm="6" offset-sm="3">
   <div style="padding-top: 8%;">
     <ion-card>
-      <div class="logo" style="height: auto; align-items: center; padding-top: 4%; padding-bottom: 4%; padding-left: 9%; padding-right: 5%;">
+      <div class="logo" style="padding-top: 4%; padding-bottom: 4%; padding-left: 9%; padding-right: 5%;  display: flex; justify-content: center; text-align: center;">
         <img src="assets/img/logo1.png">
       </div>
       <ion-card-content>
@@ -26,6 +28,7 @@
             <ion-input formControlName="usuario"></ion-input>
           </ion-item>
           <ion-label color="danger" *ngIf="formularioRegistrar.controls.usuario.errors?.required && (formularioRegistrar.touched || formularioRegistrar.dirty)">*El usuario es obligatorio</ion-label>
+          <ion-label color="danger" *ngIf="formularioRegistrar.controls.usuario.errors?.minlength && (formularioRegistrar.touched || formularioRegistrar.dirty)">*El usuario debe tener al menos 5 caracteres</ion-label>
           <ion-item>
             <ion-label position="floating">Contraseña</ion-label>
             <ion-input formControlName="password" type="password"></ion-input>
@@ -36,4 +39,6 @@
       </ion-card-content>  
     </ion-card>
   </div>
+  </ion-col>  
+  </ion-row> 
 </ion-content>
