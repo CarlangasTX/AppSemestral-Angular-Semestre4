@@ -51,6 +51,7 @@ export class RegistrarPage implements OnInit {
       const alert = await this.alertController.create({
         header: 'Registrado',
         message: 'Registrado correctamente.',
+        backdropDismiss: false,
         buttons: [
           {
             text: 'Aceptar',
