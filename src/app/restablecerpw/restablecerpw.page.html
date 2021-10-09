@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button color="danger"></ion-back-button>
     </ion-buttons>
-    <ion-title>¿Olvidaste tu contraseña?</ion-title>
+    <ion-title>¿OLVIDASTE TU CONTRASEÑA?</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -20,22 +20,22 @@
         <form [formGroup] = "formularioPw"> 
           <ion-item>
             <ion-label position="floating">Usuario</ion-label>
-            <ion-input formControlName="usuario"></ion-input>
+            <ion-input formControlName="usuario" [disabled]="auxiliar"></ion-input>
           </ion-item>
           <ion-label color="danger" *ngIf="formularioPw.controls.usuario.errors?.required && (formularioPw.touched || formularioPw.dirty)">*Debe ingresar el usuario</ion-label>
           <ion-item>
             <ion-label position="floating">Correo</ion-label>
-            <ion-input formControlName="correo" type="email"></ion-input>
+            <ion-input formControlName="correo" type="email" [disabled]="auxiliar"></ion-input>
           </ion-item>
           <ion-label color="danger" *ngIf="formularioPw.controls.correo.errors?.required && (formularioPw.touched || formularioPw.dirty)">*El correo es obligatorio</ion-label>
           <ion-label color="danger" *ngIf="formularioPw.controls.correo.errors?.email && (formularioPw.touched || formularioPw.dirty)">*Por favor, revise el formato del correo</ion-label>
         </form>
         <br>
-        <ion-button expand="block" (click)="verificar()">Verificar datos</ion-button>
+        <ion-button expand="block" (click)="verificar()" [disabled]="auxiliar">Verificar datos</ion-button>
         <div class="nuevapw" *ngIf="!mostrar">
         <form [formGroup] = "nuevaPw">
           <ion-item>
-            <ion-label position="floating">Cambiar contraseña</ion-label>
+            <ion-label position="floating">Nueva contraseña</ion-label>
             <ion-input formControlName="password" type="password"></ion-input>
           </ion-item>
         </form>

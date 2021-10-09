@@ -22,7 +22,7 @@ export class RestablecerpwPage implements OnInit {
   
   mostrar = true;
   lista_usuarios = [];
-
+  auxiliar = false;
   ngOnInit() {
   }
 
@@ -59,7 +59,7 @@ export class RestablecerpwPage implements OnInit {
     
         await alert.present();
         this.mostrar = !this.mostrar;
-
+        this.auxiliar = true;
       }
       
       lista_temporal.push(user);

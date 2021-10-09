@@ -60,7 +60,7 @@ export class LoginPage implements OnInit {
     if(numerito == 0){
       const alert = await this.alertController.create({
         header: 'Datos incorrectos',
-        message: 'Usuario y/o contraseña incorrectos.',
+        message: 'Usuario y/o contraseña incorrectos',
         buttons: ['Aceptar']
       });
   

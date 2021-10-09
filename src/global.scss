@@ -26,7 +26,7 @@
 @import "~@ionic/angular/css/flex-utils.css";
 
 ion-content{ 
-    --ion-background-color:#F8F9FA; 
+    --ion-background-color:#F8F9FA;
 } 
 
 ion-toolbar {
@@ -43,4 +43,7 @@ ion-item{
 }
 ion-label{
     --background:#043363; 
+}
+ion-input{
+    --color:white !important;
 }

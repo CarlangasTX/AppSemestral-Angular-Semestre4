@@ -29,7 +29,7 @@ export class RegistrarPage implements OnInit {
     if(this.formularioRegistrar.invalid){
       const alert = await this.alertController.create({
         header: 'Error',
-        message: 'Por favor, rellene los datos correctamente.',
+        message: 'Por favor, rellene los datos correctamente',
         buttons: ['Aceptar']
       });
   
@@ -50,7 +50,7 @@ export class RegistrarPage implements OnInit {
     if(this.formularioRegistrar.valid){
       const alert = await this.alertController.create({
         header: 'Registrado',
-        message: 'Registrado correctamente.',
+        message: 'Registrado correctamente',
         backdropDismiss: false,
         buttons: [
           {
