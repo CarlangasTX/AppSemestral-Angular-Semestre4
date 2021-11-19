@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-icon color="danger" name="log-out-outline" (click)="salir()"></ion-icon>
+    </ion-buttons>
+    <ion-title>Administrador de usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size="12" size-md="4" offset-md="4" size-sm="6" offset-sm="3">
+      <div>
+        <ion-card>
+          <div class="logo" style="padding-top: 4%; padding-bottom: 4%; padding-left: 9%; padding-right: 5%;  display: flex; justify-content: center; text-align: center;">
+            <img src="assets/img/logo1.png">
+          </div>
+          <br>
+          <br>
+          <div class="crud" style="padding-left: 15%; padding-right: 15%;">
+            <ion-button expand="block" routerLink="/registrar" color="success">Crear usuarios</ion-button>
+            <br>
+            <ion-button expand="block" routerLink="/listarusuarios">Listar usuarios</ion-button>
+            <br>
+            <ion-button expand="block" routerLink="/modificarusuario" color="warning">Modificar usuarios</ion-button>
+            <br>
+            <ion-button expand="block" routerLink="/eliminarusuario" color="danger">Eliminar usuarios</ion-button>
+            <br>
+            <ion-button expand="block" routerLink="/contacto">Test error 404</ion-button>
+          </div>  
+          <br>
+          <br>
+          <br>
+        </ion-card> 
+      </div> 
+    </ion-col>  
+  </ion-row> 
+</ion-content>

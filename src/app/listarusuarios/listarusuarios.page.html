@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="danger"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Lista de usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+    <ion-col size="12" size-md="4" offset-md="4" size-sm="6" offset-sm="3">
+    <div style="padding-top: 8%;">
+      <ion-card>
+        <div class="logo" style="padding-top: 4%; padding-bottom: 4%; padding-left: 9%; padding-right: 5%;  display: flex; justify-content: center; text-align: center;">
+          <img src="assets/img/logo1.png">
+        </div>
+        <ion-button expand="block" routerLink="/crud" style="padding-left: 10%; padding-right: 10%;">Volver al CRUD</ion-button> 
+        <ion-card-content>
+            <ion-list *ngFor="let u of lista" lines="none">
+                <ion-item>
+                  <ion-label>Usuario: {{u.usuario}}</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Correo: {{u.correo}}</ion-label>
+                </ion-item>    
+                <ion-item>
+                  <ion-label>Tipo de usuario: {{u.tipousuario}}</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Contraseña: {{u.password}}</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Fecha de nacimiento: {{u.nacimiento}}</ion-label>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Teléfono: {{u.telefono}}</ion-label>
+                </ion-item>            
+            </ion-list>
+          </ion-card-content> 
+          <ion-button expand="block" routerLink="/crud" style="padding-left: 10%; padding-right: 10%;">Volver al CRUD</ion-button> 
+          <br>
+        </ion-card>
+      </div>
+      </ion-col>  
+      </ion-row> 
+</ion-content>

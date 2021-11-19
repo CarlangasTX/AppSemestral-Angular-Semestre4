@@ -31,13 +31,14 @@
           <ion-label color="danger" *ngIf="formularioPw.controls.correo.errors?.email && (formularioPw.touched || formularioPw.dirty)">*Por favor, revise el formato del correo</ion-label>
         </form>
         <br>
-        <ion-button expand="block" (click)="verificar()" [disabled]="auxiliar">Verificar datos</ion-button>
+        <ion-button expand="block" (click)="verificar()" [disabled]="auxiliar" >Verificar datos</ion-button>
         <div class="nuevapw" *ngIf="!mostrar">
         <form [formGroup] = "nuevaPw">
           <ion-item>
             <ion-label position="floating">Nueva contraseña</ion-label>
             <ion-input formControlName="password" type="password"></ion-input>
           </ion-item>
+          <ion-label >*La contraseña debe tener al menos 8 caracteres</ion-label>
         </form>
         <br>
         <ion-button expand="block" (click)="cambiar()">Establecer nueva contraseña</ion-button>

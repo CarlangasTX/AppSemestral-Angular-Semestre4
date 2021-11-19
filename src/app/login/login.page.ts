@@ -2,7 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-
+import { AuthenticationService } from '../services/authentication.service';
+import { Storage } from '@ionic/storage';
+export interface Usuario{
+  usuario: string,
+  password: string,
+  correo: string,
+  tipousuario: string,
+  nacimiento: string,
+  telefono: number,
+};
 @Component({
   selector: 'app-login',
   templateUrl: './login.page.html',
@@ -10,7 +19,7 @@ import { AlertController } from '@ionic/angular';
 })
 export class LoginPage implements OnInit {
 
-  constructor(public alertController: AlertController, public router: Router) {}
+  constructor(public alertController: AlertController, public router: Router, private auth : AuthenticationService, private storage: Storage) {}
 
   formularioLogin = new FormGroup({
     'usuario': new FormControl("", Validators.required),
@@ -18,56 +27,32 @@ export class LoginPage implements OnInit {
   })
 
   ngOnInit() {
+    let u: Usuario;
+    let lista: Usuario[] = [];
+    u = {
+      usuario: "admin",
+      password: "admin",
+      correo: "admin@admin.cl",
+      tipousuario: "",
+      nacimiento: "",
+      telefono: 1
+    };
+    lista.push(u);
+    this.storage.create();
+    this.storage.get('lista_usuarios').then((usuarios: Usuario[])=>{
+      if(usuarios==null){
+        this.storage.set('lista_usuarios', lista);
+      }
+    }
+    
+    )
   }
   
-   lista_usuarios = [];
-
-  async ingresar(){
+    ingresar(){
+    this.auth.login(this.formularioLogin.controls.usuario.value,this.formularioLogin.controls.password.value);
+    this.formularioLogin.controls.password.setValue('');
+    this.formularioLogin.controls.usuario.setValue('');
     
-    var ingreso = this.formularioLogin.value;
-
-    var datos = localStorage.getItem('usuario');
-
-    datos = datos.replace('[','');
-    datos = datos.replace(']','');
-    datos = datos.split('},{').join('};{');
-    
-    var arreglo_temp = datos.split(';');
-    var user;
-    var lista_temporal = new Array();
-
-    var numerito = 0;
-
-    for (let index = 0; index < arreglo_temp.length; index++) {
-      var registro = arreglo_temp[index];
-      var users = JSON.parse(registro);
-      
-      user={
-        correo: users.correo,
-        usuario: users.usuario,
-        password: users.password
-      };
-      if(ingreso.usuario == user.usuario && ingreso.password == user.password){
-        numerito += 1; 
-        localStorage.setItem('ingresado', 'true');
-        this.router.navigate(['/home']);
-        localStorage.setItem('logeado', user.usuario);
-      }
-      
-      lista_temporal.push(user);
-    }
-
-    if(numerito == 0){
-      const alert = await this.alertController.create({
-        header: 'Datos incorrectos',
-        message: 'Usuario y/o contraseña incorrectos',
-        buttons: ['Aceptar']
-      });
-  
-      await alert.present();
-    }
-
-    this.lista_usuarios = lista_temporal; 
   }
 
 

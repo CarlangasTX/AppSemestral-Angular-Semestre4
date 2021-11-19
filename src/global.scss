@@ -31,6 +31,7 @@ ion-content{
 
 ion-toolbar {
     --background: #012C56;
+    --color:white !important;
   } 
 
 ion-card{
@@ -43,7 +44,12 @@ ion-item{
 }
 ion-label{
     --background:#043363; 
+    --color:white !important;
 }
 ion-input{
     --color:white !important;
 }
+ion-item.item-has-focus > ion-label{
+    color: #e7ac09 !important;
+    font-weight: bold;
+  }

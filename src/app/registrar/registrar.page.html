@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button color="danger"></ion-back-button>
     </ion-buttons>
-    <ion-title>REGISTRAR</ion-title>
+    <ion-title>CREAR USUARIO</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -33,9 +33,36 @@
             <ion-label position="floating">Contraseña</ion-label>
             <ion-input formControlName="password" type="password"></ion-input>
           </ion-item>
+          <ion-label >*La contraseña debe tener al menos 8 caracteres</ion-label>
+          <ion-item>
+            <ion-label position="floating">Confirmar contraseña</ion-label>
+            <ion-input formControlName="password2" type="password"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label>Tipo de usuario</ion-label>
+            <ion-select placeholder="Seleccionar" formControlName="tipousuario">
+              <ion-select-option value="Alumno">Alumno</ion-select-option>
+              <ion-select-option value="Docente">Docente</ion-select-option>
+            </ion-select>
+          </ion-item>
+          <ion-label color="danger" *ngIf="formularioRegistrar.controls.tipousuario.errors?.required && (formularioRegistrar.touched || formularioRegistrar.dirty)">*El tipo de usuario es obligatorio es obligatorio</ion-label>
+          <ion-item>
+            <ion-label position="floating">Fecha de nacimiento</ion-label>
+            <ion-datetime displayFormat="DD/MM/YYYY" min="1950-01-01" max="2030-31-12" value="2002-09-23T15:03:46.789" formControlName="nacimiento"></ion-datetime>
+          </ion-item>
+          <ion-label color="danger" *ngIf="formularioRegistrar.controls.nacimiento.errors?.required && (formularioRegistrar.touched || formularioRegistrar.dirty)">*La fecha de nacimiento es obligatoria</ion-label>
+          <ion-item>
+            <ion-label style="padding-right: 3%;">Teléfono</ion-label>
+            <ion-input  type="number" formControlName="telefono">9</ion-input>
+          </ion-item>
+          <ion-label color="danger" *ngIf="formularioRegistrar.controls.telefono.errors?.required && (formularioRegistrar.touched || formularioRegistrar.dirty)">*El número es obligatorio</ion-label>
+          <ion-label color="danger" *ngIf="formularioRegistrar.controls.telefono.errors?.min && (formularioRegistrar.touched || formularioRegistrar.dirty)">*El número debe contener 8 dígitos</ion-label>
+          <ion-label color="danger" *ngIf="formularioRegistrar.controls.telefono.errors?.max && (formularioRegistrar.touched || formularioRegistrar.dirty)">*El número debe contener 8 dígitos</ion-label>
         </form>
         <br>
-        <ion-button expand="block" (click)="registrar()">Registrar</ion-button>
+        <ion-button expand="block" (click)="registrar()" [disabled]="formularioRegistrar.invalid">Crear Usuario</ion-button>
+        <br>
+        <ion-button expand="block" routerLink="/crud">Volver al CRUD</ion-button>
       </ion-card-content>  
     </ion-card>
   </div>

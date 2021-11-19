@@ -3,6 +3,16 @@ import { Router } from '@angular/router';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Base64ToGallery } from '@ionic-native/base64-to-gallery/ngx';
 import { DatePipe } from '@angular/common';
+import { AuthenticationService } from '../services/authentication.service';
+import { Storage } from '@ionic/storage';
+export interface Usuario{
+  usuario: string,
+  password: string,
+  correo: string,
+  tipousuario: string,
+  nacimiento: string,
+  telefono: number,
+};
 
 @Component({
   selector: 'app-home',
@@ -12,7 +22,7 @@ import { DatePipe } from '@angular/common';
 })
 export class HomePage implements OnInit {
   
-  constructor(public router: Router, private barCodeScanner: BarcodeScanner, private base64ToGallery: Base64ToGallery, private datePipe: DatePipe) { }
+  constructor(public router: Router, private barCodeScanner: BarcodeScanner, private base64ToGallery: Base64ToGallery, private datePipe: DatePipe, private auth: AuthenticationService, private storage: Storage) { }
   
 
     mostrar = true;
@@ -43,15 +53,16 @@ export class HomePage implements OnInit {
 
 
   salir(){
-    localStorage.removeItem('ingresado');
-    window.location.reload();
+    this.auth.logout();
   }
   esDocente(){
-    if(this.usuariologeado == 'docente' || this.usuariologeado == 'Docente'){
+    
+    if(this.tipousuariologeado == 'Docente'){
       return true;
     }else{
     return false;
     }
   }
-  usuariologeado = localStorage.getItem('logeado');
+  tipousuariologeado = localStorage.getItem('tipo');
+  usuariologeado = localStorage.getItem('bienvenido');
 }
