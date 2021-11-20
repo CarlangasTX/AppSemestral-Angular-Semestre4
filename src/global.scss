@@ -53,3 +53,6 @@ ion-item.item-has-focus > ion-label{
     color: #e7ac09 !important;
     font-weight: bold;
   }
+.swal2-container.swal2-backdrop-show, .swal2-container.swal2-noanimation {
+    background:white!important;
+}

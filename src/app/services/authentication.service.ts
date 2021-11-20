@@ -4,6 +4,7 @@ import { AlertController, Platform } from '@ionic/angular';
 import { BehaviorSubject } from 'rxjs';
 import { Storage } from '@ionic/storage';
 import { FormGroup, FormControl } from '@angular/forms';
+import Swal from 'sweetalert2';
 export interface Usuario{
   usuario: string,
   password: string,
@@ -56,7 +57,16 @@ export class AuthenticationService {
           alertita = true;
           localStorage.setItem('bienvenido', usu.usuario);
           localStorage.setItem('tipo', usu.tipousuario);
+          
+          
         }
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: 'Autenticado',
+          showConfirmButton: false,
+          timer: 2000
+        })
       }
       if(alertita == false){
         this.presentarAlerta();

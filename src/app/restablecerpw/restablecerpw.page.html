@@ -3,7 +3,7 @@
     <ion-buttons slot="start">
       <ion-back-button color="danger"></ion-back-button>
     </ion-buttons>
-    <ion-title>¿OLVIDASTE TU CONTRASEÑA?</ion-title>
+    <ion-title>RESTABLECER CONTRASEÑA</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -16,13 +16,8 @@
         <img src="assets/img/logo1.png">
       </div>
       <ion-card-content>
-        <label style="color:white">Introduce tu nombre de usuario y correo para cambiar tu contraseña</label>
+        <label style="color:white">Introduce correo para cambiar tu contraseña</label>
         <form [formGroup] = "formularioPw"> 
-          <ion-item>
-            <ion-label position="floating">Usuario</ion-label>
-            <ion-input formControlName="usuario" [disabled]="auxiliar"></ion-input>
-          </ion-item>
-          <ion-label color="danger" *ngIf="formularioPw.controls.usuario.errors?.required && (formularioPw.touched || formularioPw.dirty)">*Debe ingresar el usuario</ion-label>
           <ion-item>
             <ion-label position="floating">Correo</ion-label>
             <ion-input formControlName="correo" type="email" [disabled]="auxiliar"></ion-input>
@@ -31,18 +26,7 @@
           <ion-label color="danger" *ngIf="formularioPw.controls.correo.errors?.email && (formularioPw.touched || formularioPw.dirty)">*Por favor, revise el formato del correo</ion-label>
         </form>
         <br>
-        <ion-button expand="block" (click)="verificar()" [disabled]="auxiliar" >Verificar datos</ion-button>
-        <div class="nuevapw" *ngIf="!mostrar">
-        <form [formGroup] = "nuevaPw">
-          <ion-item>
-            <ion-label position="floating">Nueva contraseña</ion-label>
-            <ion-input formControlName="password" type="password"></ion-input>
-          </ion-item>
-          <ion-label >*La contraseña debe tener al menos 8 caracteres</ion-label>
-        </form>
-        <br>
-        <ion-button expand="block" (click)="cambiar()">Establecer nueva contraseña</ion-button>
-      </div>
+        <ion-button expand="block" (click)="verificar()" [disabled]="auxiliar" >RESTABLECER CONTRASEÑA</ion-button>
       </ion-card-content>  
     </ion-card> 
   </div>  

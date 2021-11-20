@@ -101,6 +101,7 @@ export class RegistrarPage implements OnInit {
                   this.formularioRegistrar.controls.correo.setValue('');
                   this.formularioRegistrar.controls.usuario.setValue('');
                   this.formularioRegistrar.controls.password.setValue('');
+                  this.formularioRegistrar.controls.password2.setValue('');
                   this.formularioRegistrar.controls.tipousuario.setValue('');
                   this.formularioRegistrar.controls.nacimiento.setValue('');
                   this.formularioRegistrar.controls.telefono.setValue('');

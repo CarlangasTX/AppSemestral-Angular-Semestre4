@@ -20,12 +20,14 @@
     <ion-label>
       <p style="text-align: center; color: white; font-size: 20px;">Bienvenido {{usuariologeado}}</p>
     <div class="qr" style="padding-top: 6%;" *ngIf="esDocente()">
-      <ion-button expand="block" (click)="mostrarQr()">Generar QR</ion-button>
+      <ion-button expand="block" (click)="mostrarQr()" >Generar QR <ion-icon name="qr-code-outline" style="padding-left: 3%;"></ion-icon></ion-button>
       <ion-card *ngIf="qrData && !mostrar" style="display: flex; justify-content: center; text-align: center;"> 
         <ngx-qrcode [elementType]="elementType" [value]="qrData"></ngx-qrcode>
       </ion-card>
     </div>
     </ion-label>
+      <br>
+      <ion-button expand="block" routerLink="/cambiarpw">Cambiar contraseña<ion-icon name="key-outline" style="padding-left: 3%;"></ion-icon></ion-button>
   </ion-card>
 </div>
 </ion-col>  

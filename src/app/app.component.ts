@@ -26,13 +26,13 @@ export class AppComponent {
     private authService : AuthenticationService
   ) {
 
-   authService.authState.subscribe(estado=>{
+    authService.authState.subscribe(estado=>{
       if (estado) {
         router.navigate(['home']);
       }else{
         router.navigate(['login']);
       }
-    });
+    }); 
 
   }
 }

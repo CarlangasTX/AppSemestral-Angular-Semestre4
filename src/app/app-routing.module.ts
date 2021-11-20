@@ -46,6 +46,11 @@ const routes: Routes = [
     path: 'eliminarusuario',
     loadChildren: () => import('./eliminarusuario/eliminarusuario.module').then( m => m.EliminarusuarioPageModule)
   },
+  
+  {
+    path: 'cambiarpw',
+    loadChildren: () => import('./cambiarpw/cambiarpw.module').then( m => m.CambiarpwPageModule)
+  },
   {
     path: '**',
     loadChildren: () => import('./p404/p404.module').then( m => m.P404PageModule), 

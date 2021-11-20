@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button color="danger"></ion-back-button>
+    </ion-buttons>
+    <ion-title>CAMBIAR CONTRASEÑA</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-row>
+  <ion-col size="12" size-md="4" offset-md="4" size-sm="6" offset-sm="3">
+  <div class="rpw" style="padding-top: 8%;">
+    <ion-card>
+      <div class="logo" style="padding-top: 4%; padding-bottom: 4%; padding-left: 9%; padding-right: 5%;  display: flex; justify-content: center; text-align: center;">
+        <img src="assets/img/logo1.png">
+      </div>
+      <ion-card-content>
+        <label style="color:white">Introduce tu nombre de usuario, correo y contraseña actual para cambiar tu contraseña</label>
+        <form [formGroup] = "formularioPw"> 
+          <ion-item>
+            <ion-label position="floating">Usuario</ion-label>
+            <ion-input formControlName="usuario" [disabled]="auxiliar"></ion-input>
+          </ion-item>
+          <ion-label color="danger" *ngIf="formularioPw.controls.usuario.errors?.required && (formularioPw.touched || formularioPw.dirty)">*Debe ingresar el usuario</ion-label>
+          <ion-item>
+            <ion-label position="floating">Correo</ion-label>
+            <ion-input formControlName="correo" type="email" [disabled]="auxiliar"></ion-input>
+          </ion-item>
+          <ion-label color="danger" *ngIf="formularioPw.controls.correo.errors?.required && (formularioPw.touched || formularioPw.dirty)">*El correo es obligatorio</ion-label>
+          <ion-label color="danger" *ngIf="formularioPw.controls.correo.errors?.email && (formularioPw.touched || formularioPw.dirty)">*Por favor, revise el formato del correo</ion-label>
+          <ion-item>
+            <ion-label position="floating">Contraseña actual</ion-label>
+            <ion-input formControlName="password" type="password"></ion-input>
+          </ion-item>
+        </form>
+        <br>
+        <ion-button expand="block" (click)="verificar()" [disabled]="auxiliar || formularioPw.invalid" >Verificar datos</ion-button>
+        <div class="nuevapw" *ngIf="!mostrar">
+        <form [formGroup] = "nuevaPw">
+          <ion-item>
+            <ion-label position="floating">Nueva contraseña</ion-label>
+            <ion-input formControlName="password" type="password"></ion-input>
+          </ion-item>
+          <ion-label >*La contraseña debe tener al menos 8 caracteres</ion-label>
+          <ion-item>
+            <ion-label position="floating">Confirmar contraseña</ion-label>
+            <ion-input formControlName="password2" type="password"></ion-input>
+          </ion-item>
+        </form>
+        <br>
+        <ion-button expand="block" (click)="cambiar()" [disabled]="nuevaPw.invalid">Establecer nueva contraseña</ion-button>
+      </div>
+      </ion-card-content>  
+    </ion-card> 
+  </div>  
+  </ion-col>  
+  </ion-row> 
+</ion-content>
