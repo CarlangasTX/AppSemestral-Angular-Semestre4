@@ -49,6 +49,13 @@ export class AuthenticationService {
           this.authState.next(true);
           this.router.navigate(['crud']);
           alertita = true;
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Autenticado',
+            showConfirmButton: false,
+            timer: 2000
+          })
         }
         else if(nombre_usuario==usu.usuario && password==usu.password) {
           this.authState.next(true);
@@ -57,16 +64,16 @@ export class AuthenticationService {
           alertita = true;
           localStorage.setItem('bienvenido', usu.usuario);
           localStorage.setItem('tipo', usu.tipousuario);
-          
+          Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Autenticado',
+            showConfirmButton: false,
+            timer: 2000
+          })
           
         }
-        Swal.fire({
-          position: 'center',
-          icon: 'success',
-          title: 'Autenticado',
-          showConfirmButton: false,
-          timer: 2000
-        })
+       
       }
       if(alertita == false){
         this.presentarAlerta();

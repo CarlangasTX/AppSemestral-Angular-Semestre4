@@ -22,7 +22,7 @@ export interface Usuario{
 })
 export class HomePage implements OnInit {
   
-  constructor(public router: Router, private barCodeScanner: BarcodeScanner, private base64ToGallery: Base64ToGallery, private datePipe: DatePipe, private auth: AuthenticationService, private storage: Storage) { }
+  constructor(public router: Router, private barcodeScanner: BarcodeScanner, private base64ToGallery: Base64ToGallery, private datePipe: DatePipe, private auth: AuthenticationService, private storage: Storage) { }
   
 
     mostrar = true;
@@ -32,7 +32,7 @@ export class HomePage implements OnInit {
     fecha: any;
     hora: any;
     datoqr: any; 
-
+    code: any;
   mostrarQr(){
       this.mostrar = !this.mostrar;
       
@@ -50,8 +50,14 @@ export class HomePage implements OnInit {
   elementType : 'url' | 'img' | 'canvas' = 'canvas';
   ngOnInit() {
   }
-
-
+  scan(){
+  this.barcodeScanner.scan().then(barcodeData => {
+    this.code = barcodeData.text;
+    console.log('Barcode data', barcodeData);
+   }).catch(err => {
+       console.log('Error', err);
+   });
+  }
   salir(){
     this.auth.logout();
   }

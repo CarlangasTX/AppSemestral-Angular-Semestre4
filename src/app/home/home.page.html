@@ -26,6 +26,9 @@
       </ion-card>
     </div>
     </ion-label>
+      <br *ngIf="tipousuariologeado == 'Alumno'" >
+      <ion-button expand="block" (click)="scan()" *ngIf="tipousuariologeado == 'Alumno'">Escanear QR<ion-icon name="barcode-outline" style="padding-left: 3%;"></ion-icon></ion-button>
+      {{code}}
       <br>
       <ion-button expand="block" routerLink="/cambiarpw">Cambiar contraseña<ion-icon name="key-outline" style="padding-left: 3%;"></ion-icon></ion-button>
   </ion-card>
