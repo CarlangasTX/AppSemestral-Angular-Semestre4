@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 export interface Usuario{
+  id: string,
   usuario: string,
   password: string,
   correo: string,

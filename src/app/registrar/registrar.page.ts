@@ -4,7 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
-
+import { DatabaseService } from '../services/database.service';
 export interface Usuario{
   usuario: string,
   password: string,
@@ -22,7 +22,7 @@ export interface Usuario{
 export class RegistrarPage implements OnInit {
   LLAVE_USUARIOS = "lista_usuarios";
 
-  constructor(public alertController: AlertController, private router:Router, private storage: Storage) {}
+  constructor(public alertController: AlertController, private router:Router, private storage: Storage, private database: DatabaseService) {}
    formularioRegistrar = new FormGroup({
     'usuario': new FormControl("", [Validators.required, Validators.minLength(5)]),
     'password': new FormControl("", [Validators.required, Validators.minLength(8)]),
@@ -90,6 +90,11 @@ export class RegistrarPage implements OnInit {
 
         if(!usuarios){
           this.storage.set(this.LLAVE_USUARIOS,[usuario]);
+          this.database.crear('usuarios',usuario).then(res=>{
+            console.log(res);
+          }).catch(error=>{
+            console.log("error: ",error);
+          });
           const alert = await this.alertController.create({
             header: 'Usuario creado',
             message: 'Usuario creado correctamente',
@@ -132,6 +137,11 @@ export class RegistrarPage implements OnInit {
             }else{
               usuarios.push(usuario);
               this.storage.set(this.LLAVE_USUARIOS, usuarios);
+              this.database.crear('usuarios',usuario).then(res=>{
+                console.log(res);
+              }).catch(error=>{
+                console.log("error: ",error);
+              });
               const alert = await this.alertController.create({
                 header: 'Usuario creado',
                 message: 'Usuario creado correctamente',
@@ -143,6 +153,7 @@ export class RegistrarPage implements OnInit {
                       this.formularioRegistrar.controls.correo.setValue('');
                       this.formularioRegistrar.controls.usuario.setValue('');
                       this.formularioRegistrar.controls.password.setValue('');
+                      this.formularioRegistrar.controls.password2.setValue('');
                       this.formularioRegistrar.controls.tipousuario.setValue('');
                       this.formularioRegistrar.controls.nacimiento.setValue('');
                       this.formularioRegistrar.controls.telefono.setValue('');

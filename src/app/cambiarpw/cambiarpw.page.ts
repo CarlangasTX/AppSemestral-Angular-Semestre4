@@ -3,7 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
+import { DatabaseService } from '../services/database.service';
 export interface Usuario{
+  id: string,
   usuario: string,
   password: string,
   correo: string,
@@ -19,7 +21,7 @@ export interface Usuario{
 })
 export class CambiarpwPage implements OnInit {
 
-  constructor(public alertController: AlertController, public router: Router, private storage: Storage) { }
+  constructor(public alertController: AlertController, public router: Router, private storage: Storage, private database: DatabaseService) { }
   formularioPw = new FormGroup({
     'usuario': new FormControl("", Validators.required),
     'correo': new FormControl("", [Validators.required, Validators.email]),
@@ -79,6 +81,7 @@ export class CambiarpwPage implements OnInit {
     var verificar = this.formularioPw.value;
     var nuevapw = this.nuevaPw.value;
     var alertita = false;
+    var idf: any;
     var validacionpw = {
       password: this.nuevaPw.controls.password.value,
       password2: this.nuevaPw.controls.password2.value,
@@ -107,6 +110,7 @@ export class CambiarpwPage implements OnInit {
         if(verificar.usuario == usu.usuario && verificar.correo == usu.correo && nuevapw.password.length !== 0){
           alertita = true; 
           usu.password = nuevapw.password;
+          idf = usu.id;
           const alert = await this.alertController.create({
             message: 'La contraseña ha sido cambiada correctamente',
             backdropDismiss: false,
@@ -120,9 +124,11 @@ export class CambiarpwPage implements OnInit {
           });
       
           await alert.present();
+          this.database.actualizar('usuarios',idf,usu);
         }
         
         this.lista.push(usu);
+        
       }
       if(alertita == false){
         const alert = await this.alertController.create({

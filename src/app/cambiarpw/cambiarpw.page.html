@@ -31,7 +31,7 @@
           <ion-label color="danger" *ngIf="formularioPw.controls.correo.errors?.email && (formularioPw.touched || formularioPw.dirty)">*Por favor, revise el formato del correo</ion-label>
           <ion-item>
             <ion-label position="floating">Contraseña actual</ion-label>
-            <ion-input formControlName="password" type="password"></ion-input>
+            <ion-input formControlName="password" type="password" [disabled]="auxiliar"></ion-input>
           </ion-item>
         </form>
         <br>

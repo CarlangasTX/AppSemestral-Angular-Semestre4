@@ -4,7 +4,9 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { AuthenticationService } from '../services/authentication.service';
 import { Storage } from '@ionic/storage';
+import { DatabaseService } from '../services/database.service';
 export interface Usuario{
+  id: string,
   usuario: string,
   password: string,
   correo: string,
@@ -19,7 +21,7 @@ export interface Usuario{
 })
 export class LoginPage implements OnInit {
 
-  constructor(public alertController: AlertController, public router: Router, private auth : AuthenticationService, private storage: Storage) {}
+  constructor(public alertController: AlertController, public router: Router, private auth : AuthenticationService, private storage: Storage, private database: DatabaseService) {}
 
   formularioLogin = new FormGroup({
     'usuario': new FormControl("", Validators.required),
@@ -30,6 +32,7 @@ export class LoginPage implements OnInit {
     let u: Usuario;
     let lista: Usuario[] = [];
     u = {
+      id: "",
       usuario: "admin",
       password: "admin",
       correo: "admin@admin.cl",
@@ -38,12 +41,29 @@ export class LoginPage implements OnInit {
       telefono: 1
     };
     lista.push(u);
+    
+    this.database.obtenerTodos('usuarios').then(firebaseResponse=>{
+      firebaseResponse.subscribe(listaReferencia=>{
+        
+        lista = [];
+
+        listaReferencia.forEach(usuRef => {
+          let u = usuRef.payload.doc.data() as Usuario;
+          u.id = usuRef.payload.doc.id;
+          lista.push(u);
+          this.storage.create();
+          this.storage.set('lista_usuarios', lista);
+    } 
+    )
+      });
+    });
+    
     this.storage.create();
     this.storage.get('lista_usuarios').then((usuarios: Usuario[])=>{
       if(usuarios==null){
         this.storage.set('lista_usuarios', lista);
       }
-    }
+    } 
     
     )
   }

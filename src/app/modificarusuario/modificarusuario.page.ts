@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AlertController } from '@ionic/angular';
+import { DatabaseService } from '../services/database.service';
 export interface Usuario{
+  id: string,
   usuario: string,
   password: string,
   correo: string,
@@ -19,7 +21,7 @@ export class ModificarusuarioPage implements OnInit {
 
   lista: Usuario[] = [];
   cusuario: any;
-  constructor(private storage: Storage, public alertController: AlertController) { }
+  constructor(private storage: Storage, public alertController: AlertController, private database: DatabaseService) { }
   formularioModificar = new FormGroup({
     'password2': new FormControl("", [Validators.required, Validators.minLength(8)]),
     'correo2' : new FormControl("",[Validators.required, Validators.email]),
@@ -71,6 +73,7 @@ export class ModificarusuarioPage implements OnInit {
         if(id == usu.usuario){
           usuarioc.usuario = id;
           this.lista.push(usuarioc); 
+          this.database.actualizar('usuarios',usu.id,usuarioc);
         }else{
           this.lista.push(usu);
         }
