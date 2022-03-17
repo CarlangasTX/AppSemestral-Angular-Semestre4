@@ -26,15 +26,6 @@ export class DatabaseService {
     }
   }
 
-  //obtener por id
-  async obtenerId(coleccion, id){
-    try {
-      return await this.firestore.collection(coleccion).doc(id).get();
-    } catch (error) {
-      console.log("error: ",error);
-    }
-  }
-
   //eliminar
   async eliminar(coleccion, id){
     try {
